@@ -11,15 +11,14 @@ jobs:
   test:
     environment: testing
     runs-on: ubuntu-latest
-    # job is running in the below container below
-    container:
-      image: node:16
+    # container:
+    #   image: node:16
       # env vars needed for the container
       # env:
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb
       # label of the service to connect to
-      MONGODB_CLUSTER_ADDRESS: mongodb
+      MONGODB_CLUSTER_ADDRESS: 127.0.0.1:27017
       MONGODB_USERNAME: root
       MONGODB_PASSWORD: example
       PORT: 8080
@@ -28,6 +27,8 @@ jobs:
       mongodb:
         # mongo docker image
         image: mongo
+        ports:
+          - 27017:27017
         env:
           MONGO_INITDB_ROOT_USERNAME: root
           MONGO_INITDB_ROOT_PASSWORD: example
